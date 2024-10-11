@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!-- xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.thymeleaf.org/"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>join</title>
+    <link rel="stylesheet" href="css/main/common.css"/>
+</head>
+<style>
+        #bannerTop {
+            display: none;
+            width: 100%;
+            height: 80px;
+            border-bottom: 1px solid #e9e9e9;
+            box-sizing: border-box;
+        }
+
+        #bannerTop.on {
+            display: block;
+        }
+
+        #bannerTop > article {
+            position: relative;
+            width: 1200px;
+            height: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        #bannerTop > article > .btnClose {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            width: 40px;
+            height: 40px;
+            background-image: url('images/ico_sprite.png');
+            background-position: -122px -142px;
+            background-color: transparent;
+            font-size: 0;
+            border: none;
+            cursor: pointer;
+        }
+
+        #join section {
+            width: 100%;
+            height: 700px;
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+
+        #join section > .custjoin {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+
+        #join section > .sellerjoin {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            box-sizing: border-box;
+
+        }
+
+</style>
+<body>
+    <header>
+        <div class="top">
+            <div>
+                <block sec:authorize="isAnonymous()">
+                    <a href="/member/login">로그인</a>
+                    <a href="/member/join">회원가입</a>
+                </block>
+                <block sec:authorize="isAuthenticated()">
+                    <!-- <a href="#" >[[${#authentication.principal.member.name}]]</a> 이름 -->
+                    <block sec:authorize="hasRole('1')">
+                        <!-- <a href="/my/home(uid=${#authentication.principal.member.uid})">마이페이지</a> -->
+                        <a href="#">마이페이지</a>
+                    </block>
+                    <block sec:authorize="hasAnyRole('2','3')" >
+                        <a href="/admin/index">관리자</a>
+                    </block>
+                    <a href="/member/logout">로그아웃</a>
+                    <a href="/member/cart">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;
+                        장바구니
+                    </a>
+                </block>
+            </div>
+        </div>
+        <div class="logo">
+            <div>
+                <a href="#"><img src="images/main/header_logo.png" alt="로고"/></a>
+            </div>
+        </div>
+    </header>
+<main>
+    <div class="join section">
+        <div class="custjoin">
+            
+            <button class="customer">회원가입</button>
+        </div>
+        <div class="sellerjoin">
+            <button class="seller">회원가입</button>
+        </div>
+
+    </div>
+</main>
+    
+</body>
+</html>
